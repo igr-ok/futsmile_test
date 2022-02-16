@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('usersms', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('second_name');
+            //$table->timestamps();
+
+
+            $table->softDeletes();
         });
     }
 
