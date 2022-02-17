@@ -12,4 +12,9 @@ class Post extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $table = 'posts';
+    public $timestamps = false;
+
+    public function autor(){
+        return $this->belongsTo(Autor::class, 'user_id', 'id');
+    }
 }

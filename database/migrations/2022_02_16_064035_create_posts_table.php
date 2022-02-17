@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('autor_id');
+            $table->unsignedBigInteger('autor_id')->nullable();
             $table->text('text');
             $table->timestamps();
 
 
             $table->softDeletes();
+
+            $table->index('autor_id', 'post_autor_idx');
+            $table->foreign('autor_id', 'post_autor_fk')->on('autors')->references('id');
         });
     }
 
