@@ -15,27 +15,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
-         $autors = Autor::with('userHave');  
-         //$users = Usersm::with('autorHave');    
+    {        
+         
+         $autors = Autor::all();
          $users = Usersm::all();
-         $posts = Post::all();
+         $posts = Post::all();       
 
-            
-
-        // foreach ($posts as $post){
-        //     dd($post->hasAutor->about);
-        // }
-        
-
-        return view('test', compact('autors', 'users', 'posts'));     
-
-
-        //dd($autor->hasPosts);
-        //dd($post->hasAutor);
-
-              
+        return view('test', compact('autors', 'users', 'posts'));              
         
     }
 
@@ -46,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -57,7 +43,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'autor_id' => 'integer',
+            'text' => 'string',
+        ]);
+        Post::create($data);
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -68,7 +59,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('show', compact('post'));
+        //dd($post->text);
     }
 
     /**
@@ -79,7 +72,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('edit', compact('post'));
     }
 
     /**
@@ -89,9 +83,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Post $post)
     {
-        //
+        $data = request()->validate([
+            'autor_id' => 'integer',
+            'text' => 'string',
+        ]);
+        $post->update($data);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -100,8 +99,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

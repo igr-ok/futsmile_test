@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         //      $post->autors()->attach($autorsIds);
         //  }
         
+        //пока не разобрался, как наполнять разными id
 
         
 

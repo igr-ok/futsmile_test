@@ -1,54 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
+@include('partials/header')
     <div id="app">
         <example-component></example-component>
-        {{-- Пока немного не понял смысл vue в данном конкретном задании.. --}}
+        {{-- Пока немного не понял необходимость vue в связке с lar. в данном конкретном задании.. --}}
 
     
     <div class="table-responsive col-md-12">
+        <ul class="nav navbar-nav navbar-right">         
+            
+            <li id="create"><a href="{{ route('posts.create') }}">Добавить</a></li>          
+        </ul>
         <table class="table align-items-center table-flush">
             <thead>
             <tr>
-                <th class="centered">ФИО<br>Автора</th>
+                <th class="centered">Имя<br>Автора</th>
+                <th class="centered">Фамилия<br>Автора</th>
                 <th class="centered">Текст<br>поста</th>
                 <th class="centered">Дата<br>публикации</th>                
             </tr>
             </thead>
             <tbody>
+                <div class="d-none">
+                    @foreach($autors as $autor)
+                    {{$first_name = $autor->userHave->first_name}}                
+                    {{$last_name = $autor->userHave->last_name}}
+                    @endforeach
+                </div>
 
                 @foreach($posts as $post)
                     <tr>
-                        <th class="centered">{{$post->hasAutor->about}}</th>
-                        {{-- С выводом ФИО пока не разобрался, т.к. у posts и users связь не прямая --}}
-                        {{-- может всетаки нужен hasManyThrough... --}}
-                        <th class="centered">{{$post->text}}</th>
+                        <th class="centered">{{$first_name}}</th>
+                        <th class="centered">{{$last_name}}</th>                      
+                        <th class="centered"><a href="{{ route('posts.show', $post->id) }}">{{$post->text}}</th>
                         <th class="centered">{{$post->created_at}}</th>
-
-
                     </tr>
 
 
