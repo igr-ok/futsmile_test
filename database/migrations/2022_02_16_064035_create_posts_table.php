@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('autor_id')->nullable();
             $table->text('text');
-            $table->timestamps();
+            $table->timestamps(); 
 
 
             $table->softDeletes();

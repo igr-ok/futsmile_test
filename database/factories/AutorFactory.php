@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,9 +18,11 @@ class AutorFactory extends Factory
     public function definition()
     {
         return [
-            //'user_id' => UsersmFactory::get()->random()->id,
+            //'user_id' => Factory::get()->random()->id,
             'user_id' => 1,
-            'about' => $this->faker->text
+            'about' => $this->faker->text,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ];
     }
 }

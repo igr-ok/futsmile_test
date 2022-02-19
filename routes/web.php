@@ -18,8 +18,7 @@ use App\Http\Controllers\PostController;
     //return view('welcome');
 //});
 
-//ispolzuem resurcniy controller
-//budet returnit vue shablon
+
 Route::resource('posts', PostController::class);
 
 

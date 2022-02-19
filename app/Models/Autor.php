@@ -12,15 +12,17 @@ class Autor extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $table = 'autors';
-    public $timestamps = false;
+        
 
-    public function posts(){
+    public function hasPosts(){
         return $this->hasMany(Post::class, 'autor_id', 'id');
     }
 
-    // public function users(){
-    //     return $this->hasMany(Usersm::class, '', 'id');
-    // }
+    public function userHave(){
+        return $this->belongsTo('App\Models\Usersm', 'id');
+        //return $this->belongsTo(Usersm::class);
+
+    }
 
 
 }

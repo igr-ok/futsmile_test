@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +19,11 @@ class PostFactory extends Factory
     {
                 
         return [
-            //'autor_id' => AutorFactory::get()->random()->id,
+            //'autor_id' => Factory::get()->random()->id,
             'autor_id' => 1,
-            'text' => $this->faker->text
+            'text' => $this->faker->text,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ];
     }
 }

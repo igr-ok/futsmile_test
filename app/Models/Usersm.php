@@ -12,9 +12,12 @@ class Usersm extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $table = 'usersms';
-    public $timestamps = false;
 
-    public function autor(){
-        return $this->belongsTo(Autor::class, 'user_id', 'id');
-    }
+    public function autorHave(){
+        return $this->hasOne('App\Models\Autor', 'id');
+        //return $this->hasOne(Autor::class);// vozmojno spaset foreign
+
+    }    
+
+    
 }

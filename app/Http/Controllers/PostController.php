@@ -16,17 +16,26 @@ class PostController extends Controller
      */
     public function index()
     {
-        //poka welcome
-        //return view('welcome');
-        $autor = Autor::find(1);
-        $post = Post::find(1);
+        
+         $autors = Autor::with('userHave');  
+         //$users = Usersm::with('autorHave');    
+         $users = Usersm::all();
+         $posts = Post::all();
 
-        //$posts = Post::where('autor_id', $autor->id)->get();
+            
+
+        // foreach ($posts as $post){
+        //     dd($post->hasAutor->about);
+        // }
+        
+
+        return view('test', compact('autors', 'users', 'posts'));     
 
 
-        dd($post->autor);
-        //dd($posts);
+        //dd($autor->hasPosts);
+        //dd($post->hasAutor);
 
+              
         
     }
 
