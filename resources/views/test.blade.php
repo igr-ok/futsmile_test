@@ -1,8 +1,7 @@
 @include('partials/header')
     <div id="app">
         <example-component></example-component>
-        {{-- Пока немного не понял необходимость vue в связке с lar. в данном конкретном задании.. --}}
-
+        
     
     <div class="table-responsive col-md-12">
         <ul class="nav navbar-nav navbar-right">         

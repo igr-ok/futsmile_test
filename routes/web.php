@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,6 @@ use App\Http\Controllers\PostController;
 
 
 Route::resource('posts', PostController::class);
-
-
-
 
 
 

@@ -19,9 +19,10 @@ class PostController extends Controller
          
          $autors = Autor::all();
          $users = Usersm::all();
-         $posts = Post::all();       
+         $posts = Post::all();
 
-        return view('test', compact('autors', 'users', 'posts'));              
+        return view('test', compact('autors', 'users', 'posts'));
+        //return 111111;
         
     }
 
